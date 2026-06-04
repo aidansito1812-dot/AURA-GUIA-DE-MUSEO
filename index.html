@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AURA - Guía de Museo</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#000;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:Arial,sans-serif;
+}
+
+#face{
+    display:flex;
+    gap:80px;
+    align-items:center;
+    pointer-events:none;
+}
+
+/* CEJAS */
+
+.eyebrow{
+    width:90px;
+    height:10px;
+    background:#66ecff;
+    border-radius:20px;
+    margin:0 auto 25px auto;
+
+    box-shadow:
+        0 0 10px #66ecff,
+        0 0 20px #66ecff,
+        0 0 40px #66ecff;
+}
+
+/* OJOS */
+
+.eye{
+    width:130px;
+    height:150px;
+
+    background:#8ff8ff;
+
+    border-radius:28px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 0 20px #66ecff,
+        0 0 40px #66ecff,
+        0 0 80px #66ecff;
+
+    animation:blink 5s infinite;
+}
+
+.eye::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            rgba(0,0,0,.08) 0px,
+            rgba(0,0,0,.08) 1px,
+            transparent 1px,
+            transparent 16px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(0,0,0,.08) 0px,
+            rgba(0,0,0,.08) 1px,
+            transparent 1px,
+            transparent 16px
+        );
+}
+
+/* PUPILA */
+
+.pupil{
+    position:absolute;
+
+    width:42px;
+    height:78px;
+
+    background:#07131f;
+
+    border-radius:18px;
+
+    left:44px;
+    top:32px;
+
+    animation:lookAround 8s infinite;
+}
+
+/* BRILLO */
+
+.sparkle{
+    position:absolute;
+
+    width:18px;
+    height:18px;
+
+    top:18px;
+    right:18px;
+
+    background:white;
+
+    border-radius:4px;
+
+    box-shadow:
+        0 0 10px white,
+        0 0 20px white;
+}
+
+/* PIXEL ROSA */
+
+.cheek{
+    width:16px;
+    height:16px;
+
+    background:#ffb4ff;
+
+    position:absolute;
+
+    bottom:16px;
+
+    border-radius:4px;
+
+    box-shadow:
+        0 0 8px #ffb4ff,
+        0 0 16px #ffb4ff;
+}
+
+.left-cheek{
+    left:-8px;
+}
+
+.right-cheek{
+    right:-8px;
+}
+
+/* ANIMACIONES */
+
+@keyframes blink{
+
+    0%,93%,100%{
+        transform:scaleY(1);
+    }
+
+    95%{
+        transform:scaleY(0.05);
+    }
+}
+
+@keyframes lookAround{
+
+    0%{
+        transform:translateX(0px);
+    }
+
+    25%{
+        transform:translateX(-10px);
+    }
+
+    50%{
+        transform:translateX(10px);
+    }
+
+    75%{
+        transform:translateX(-5px);
+    }
+
+    100%{
+        transform:translateX(0px);
+    }
+}
+
+/* WIDGET */
+
+.widget-box{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:99999;
+}
+
+</style>
+</head>
+<body>
+
+<div id="face">
+
+    <div>
+        <div class="eyebrow"></div>
+
+        <div class="eye">
+            <div class="pupil"></div>
+            <div class="sparkle"></div>
+            <div class="cheek left-cheek"></div>
+        </div>
+    </div>
+
+    <div>
+        <div class="eyebrow"></div>
+
+        <div class="eye">
+            <div class="pupil"></div>
+            <div class="sparkle"></div>
+            <div class="cheek right-cheek"></div>
+        </div>
+    </div>
+
+</div>
+
+<div class="widget-box">
+
+    <elevenlabs-convai
+        agent-id="agent_4801kta67q5rfms9cwmr8mhp40jt">
+    </elevenlabs-convai>
+
+</div>
+
+<script src="https://unpkg.com/@elevenlabs/convai-widget-embed"></script>
+
+</body>
+</html>
